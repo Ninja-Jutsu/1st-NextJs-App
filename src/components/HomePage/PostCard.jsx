@@ -11,23 +11,25 @@ function PostCard({ post, user }) {
   return (
     <div className={classes.cardContainer}>
       <div className={classes.cardHeader}>
-        <Link
-          className={classes.userImageWrapper}
-          href={`/api/${userId}`}
-        >
-          <Image
-            src={RandomImage}
-            alt={`an image of the user called${username}`}
-            width={100}
-            height={100}
-          />
-        </Link>
-        <Link
-          href={`users/${userId}`}
-          className={classes.userName}
-        >
-          <p>{username}</p>
-        </Link>
+        <div className={classes.userProfile}>
+          <Link
+            className={classes.userImageWrapper}
+            href={`/api/${userId}`}
+          >
+            <Image
+              src={RandomImage}
+              alt={`an image of the user called${username}`}
+              width={100}
+              height={100}
+            />
+          </Link>
+          <Link
+            href={`users/${userId}`}
+            className={classes.userName}
+          >
+            <p>{username}</p>
+          </Link>
+        </div>
         <Link
           href={`/posts/${id}`}
           className={classes.title}
@@ -39,7 +41,13 @@ function PostCard({ post, user }) {
         className={classes.postBody}
         href={`/posts/${id}`}
       >
-        {desc}
+        <p>{desc}</p>
+        <Image
+          src={RandomImage}
+          alt={`an image of the user called${username}`}
+          width={100}
+          height={100}
+        />
       </Link>
       <div className={classes.reactions}>
         <div className='comments'>{comments.length} comments...</div>

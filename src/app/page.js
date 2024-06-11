@@ -3,7 +3,7 @@ import classes from './page.module.css'
 const DUMMY_POSTS = [
   {
     id: 1,
-    title: 'post1',
+    title: 'Whereas recognition of the inherent dignity',
     desc: 'post main text1',
     user: 'Ismail Bardach',
     createdOn: '2022-03-12',

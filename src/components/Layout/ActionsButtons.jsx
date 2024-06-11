@@ -16,23 +16,17 @@ export default function ActionButtons() {
   return (
     <>
       <ButtonWrapper>
-        <StaticButton onClick={handleLogin}>Login</StaticButton>
+        <UnstyledButton onClick={handleLogin}>Login</UnstyledButton>
         <PositionedButton onClick={handleLogin}>Login</PositionedButton>
       </ButtonWrapper>
       <ButtonWrapper>
-        <StaticButton onClick={handleLogout}>Logout</StaticButton>
+        <UnstyledButton onClick={handleLogout}>Logout</UnstyledButton>
         <PositionedButton onClick={handleLogout}>Logout</PositionedButton>
       </ButtonWrapper>
     </>
   )
 }
 
-const Login = styled(UnstyledButton)``
-
-const StaticButton = styled(UnstyledButton)`
-  transform: translateY(0%);
-  transition: transform 600ms;
-`
 
 const PositionedButton = styled(UnstyledButton)`
   position: absolute;
@@ -53,4 +47,3 @@ const ButtonWrapper = styled.div`
     transition: clip-path 250ms;
   }
 `
-const Logout = styled(UnstyledButton)``
