@@ -1,0 +1,5 @@
+{
+  "secret": "wisdom_jwtSecret",
+  "db": "",
+  "port": ""
+}

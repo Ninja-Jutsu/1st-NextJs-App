@@ -1,0 +1,5 @@
+{
+    "secret":"p&o!i#^$d72dWv0QN3tA3jr5J40V",
+    "db": "mongodb+srv://ninja:7.Orangina@cluster0.bzsjq4g.mongodb.net/wisdom-blog",
+    "port": 5000
+}
