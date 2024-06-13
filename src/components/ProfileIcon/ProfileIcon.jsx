@@ -1,30 +1,22 @@
 import React from 'react'
-import { Users } from 'react-feather'
+// import { Users } from 'react-feather'
 import styled from 'styled-components'
 import UnstyledButton from '../UnstyledButton/UnstyledButton'
+import Icon from '../Icon/Icon'
 
 function ProfileIcon() {
+  // HANDLE CLICK
+  function handleClick() {}
+
   return (
-    <IconWrapper>
-      <MenuButton>
-        <Users
-          color='black'
-          size={24}
-        />
-      </MenuButton>
-    </IconWrapper>
+    <UnstyledButton onClick={handleClick}>
+      <Icon
+        id={'users'}
+        size={24}
+        color={'black'}
+      />
+    </UnstyledButton>
   )
 }
-
-const IconWrapper = styled.div`
-  display: block;
-`
-
-const MenuButton = styled(UnstyledButton)`
-  padding: 10px;
-  & svg {
-    display: block;
-  }
-`
 
 export default ProfileIcon

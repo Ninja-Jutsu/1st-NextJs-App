@@ -1,0 +1,23 @@
+.UnstyledButton {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  padding: 10px;
+}
+
+.UnstyledButton:focus {
+  outline-offset: 2px;
+}
+
+.UnstyledButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.UnstyledButton svg {
+  display: block;
+}

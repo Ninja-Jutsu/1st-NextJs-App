@@ -5,7 +5,7 @@
   gap: 10px;
   background-color: var(--color-white);
   color: hsl(0, 0%, 0%);
-  min-height: 15vh;
+  min-height: 3rem;
   padding: 0 10px;
   text-align: baseline;
   border-bottom: 1px solid var(--color-gray-700);

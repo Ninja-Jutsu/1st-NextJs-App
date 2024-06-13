@@ -1,7 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+
 import LikeBtn from './LikeBtn'
+import CommentButton from '../../components/HomePage/CommentButton'
+
 import RandomImage from '../../../public/images/atmosphere-8752835.png'
 import classes from './PostCard.module.css'
 
@@ -41,21 +44,30 @@ function PostCard({ post, user }) {
         className={classes.postBody}
         href={`/posts/${id}`}
       >
-        <p>{desc}</p>
-        <Image
-          src={RandomImage}
-          alt={`an image of the user called${username}`}
-          width={100}
-          height={100}
-        />
+        <div className={classes.textContent}>
+          <p>{desc}</p>
+        </div>
+        <div className={classes.mainImageWrapper}>
+          <Image
+            src={RandomImage}
+            alt={`an image of the user called${username}`}
+            width={200}
+            height={200}
+          />
+        </div>
       </Link>
-      <div className={classes.reactions}>
-        <div className='comments'>{comments.length} comments...</div>
+      <div className={classes.details}>
         <div className='likes'> {likes.length} likes...</div>
+        <div className='comments'>{comments.length} comments...</div>
+      </div>
+
+      <div className={classes.buttons}>
         <LikeBtn
           postId={id}
           userId={userId}
         />
+        <CommentButton />
+        <div className='spacer'></div>
       </div>
     </div>
   )

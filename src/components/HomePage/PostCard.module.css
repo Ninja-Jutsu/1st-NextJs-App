@@ -1,10 +1,13 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   padding: 5px;
-  padding-bottom: 10px;
-  width: 90vw;
-  min-width: max-content;
+  margin-bottom: 10px;
+
+  min-width: 90vw;
+  min-height: max-content;
+
   border-bottom: 1px solid var(--color-gray-500);
 
   /* width: max(500px, 65vw); */
@@ -19,6 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: max-content;
   padding: 0px 5px;
   color: black;
   padding: 10px;
@@ -36,17 +40,23 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0px 0px 2px hsl(0deg 0% 0% / 0.25);
+}
+
+.userImageWrapper:hover img {
+  transform: scale(1.1);
+  transition: transform 300ms;
 }
 
 .userImageWrapper img {
   display: block;
   width: 100%;
   object-fit: fill;
+  transition: transform 600ms;
 }
 
 .userName {
@@ -54,43 +64,78 @@
   font-size: 0.7rem;
   font-weight: var(--WEIGH-normal);
   margin-bottom: -5px;
+  transition: transform 600ms;
+}
+
+.userName:hover {
+  transform: scale(1.1);
+  transition: transform 300ms;
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.75rem;
   flex-grow: 1;
   text-align: center;
-  height: calc(50px + 1rem + 5px);
+  height: max-content;
   font-family: Inter, sans-serif;
   font-optical-sizing: auto;
   font-weight: var(--WEIGH-medium);
   font-style: normal;
+  transition: color 300ms;
 }
 
-.title p {
-  font-family: inherit;
+.title:hover {
+  color: var(--color-gray-700);
+  transition: color 300ms;
 }
 
 .postBody {
-  display: flex;
+  display: grid;
+  gap: 10px;
+  padding: 5px;
+  grid-template-columns: 1fr 1fr;
+}
 
-  width: max-content;
-  max-width: fit-content;
+.mainImageWrapper {
+  width: 100%;
+}
+
+.mainImageWrapper:hover img {
+  transform: scale(1.02);
+  transition: transform 300ms;
+}
+
+.mainImageWrapper img {
+  width: 100%;
+  height: 100%;
+  transition: transform 600ms;
 }
 
 .postBody p {
   font-family: Inter, sans-serif;
-  color: var(--color-gray-700);
+  color: var(--color-gray-900);
+  text-wrap: wrap;
+  padding: 0;
+  margin: 0;
 }
 
-.reactions {
+.details {
   display: flex;
   gap: 10px;
+  padding: 5px;
+  border-bottom: 1px solid var(--color-gray-300);
+  font-size: 0.8rem;
+}
+
+.details div {
+  flex-grow: 1;
 }
 
 .reactions button {
   margin-left: auto;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }

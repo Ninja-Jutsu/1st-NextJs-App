@@ -1,10 +1,11 @@
 import PostCard from '../components/HomePage/PostCard'
 import classes from './page.module.css'
+import { formatDate } from '../helpers/format'
 const DUMMY_POSTS = [
   {
     id: 1,
     title: 'Whereas recognition of the inherent dignity',
-    desc: 'post main text1',
+    desc: 'Whereas recognition of the inherent dignity Whereas recognition of the inherent dignity ',
     user: 'Ismail Bardach',
     createdOn: '2022-03-12',
     comments: [1, 2, 3, 4],
@@ -18,6 +19,7 @@ const DUMMY_POSTS = [
     createdOn: '2022-03-12',
     comments: [1, 2, 3, 4],
     likes: [1, 2, 3, 4, 5],
+    formatDate,
   },
   {
     id: 3,
@@ -35,24 +37,31 @@ const DUMMY_USER = {
   userId: 10,
 }
 
-export default async function Home() {
+export default async function HomePage() {
   // Fetch all posts sorted by date
   const allPosts = DUMMY_POSTS
   const user = DUMMY_USER
-
+  const date = new Date('2024-03-02')
+  const formattedDate = formatDate('2024-12-25')
   return (
-    <main className={classes.mainSection}>
-      <h1>News Feed</h1>
-      {allPosts.map((post) => {
-        return (
-          <article key={post.id}>
-            <PostCard
-              user={user}
-              post={post}
-            />
-          </article>
-        )
-      })}
-    </main>
+    <>
+      <div className={classes.subHeader}>
+        <div className='spacer'></div>
+        <p>{formattedDate}</p>
+        <h1>Subscribe for 0.5$/month</h1>
+      </div>
+      <main className={classes.mainSection}>
+        {allPosts.map((post) => {
+          return (
+            <article key={post.id}>
+              <PostCard
+                user={user}
+                post={post}
+              />
+            </article>
+          )
+        })}
+      </main>
+    </>
   )
 }

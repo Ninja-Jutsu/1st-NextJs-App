@@ -3,7 +3,6 @@ import React from 'react'
 import Link from 'next/link'
 import classes from './Header.module.css'
 
-
 import TopicsIcon from '../TopicsIcon/TopicsIcon'
 import ProfileIcon from '../ProfileIcon/ProfileIcon'
 
@@ -14,16 +13,15 @@ function Header({ topics }) {
       <TopicsIcon />
       <div className={classes.LogoWrapper}>
         <div className={classes.staticLinkWrapper}>
-          <Link href='/'>Wisdom</Link>
+          <Link href='/'>The Wisdom Times</Link>
         </div>
         <div className={classes.positionedLinkWrapper}>
-          <Link href='/'>7ikma</Link>
+          <Link href='/'>The 7ikma Times</Link>
         </div>
       </div>
       <ProfileIcon />
     </div>
   )
 }
-
 
 export default Header

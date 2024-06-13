@@ -1,12 +1,9 @@
 'use client'
 import React from 'react'
-import styled from 'styled-components'
 import Icon from '../Icon/Icon'
 import UnstyledButton from '../UnstyledButton/UnstyledButton'
 
-function LikeBtn({ postId, userId, children }) {
-  const [isLiked, setIsLiked] = React.useState(false)
-
+function CommentButton({ children }) {
   function handleClick() {
     // Create an action that:
     // verifies if the current user has already liked the post
@@ -19,14 +16,13 @@ function LikeBtn({ postId, userId, children }) {
       onClick={handleClick}
     >
       <Icon
-        id={'heart'}
+        id={'comment'}
         size={20}
-        color={isLiked ? 'red' : 'black'}
       >
-        Like
+        Comment
       </Icon>
     </UnstyledButton>
   )
 }
 
-export default LikeBtn
+export default CommentButton

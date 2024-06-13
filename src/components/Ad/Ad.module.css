@@ -1,0 +1,12 @@
+.Ad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray-300);
+  color: var(--color-gray-700);
+  text-transform: uppercase;
+}
+
+.Ad span {
+  transform: rotate(90deg);
+}

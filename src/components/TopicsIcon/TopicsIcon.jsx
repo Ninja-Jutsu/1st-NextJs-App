@@ -1,32 +1,20 @@
 import React from 'react'
-import { Menu } from 'react-feather'
-import styled from 'styled-components'
 import UnstyledButton from '../UnstyledButton/UnstyledButton'
+import Icon from '../Icon/Icon'
 
 function TopicsIcon() {
+  // HANDLE CLICK
+  function handleClick() {}
   return (
-    <IconWrapper>
-      <MenuButton>
-        <Menu
-          color='black'
-          ProfileIcon
-          strokeWidth={3}
-          size={24}
-        />
-      </MenuButton>
-    </IconWrapper>
+    <UnstyledButton onClick={handleClick}>
+      <Icon
+        id={'menu'}
+        color='black'
+        strokeWidth={3}
+        size={24}
+      />
+    </UnstyledButton>
   )
 }
-
-const IconWrapper = styled.div`
-  display: block;
-`
-
-const MenuButton = styled(UnstyledButton)`
-  padding: 10px;
-  & svg {
-    display: block;
-  }
-`
 
 export default TopicsIcon
