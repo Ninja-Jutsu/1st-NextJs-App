@@ -1,5 +1,5 @@
 import PostCard from '../components/HomePage/PostCard'
-import classes from './page.module.css'
+import classes from './HomePage.module.css'
 import { formatDate } from '../helpers/format'
 const DUMMY_POSTS = [
   {

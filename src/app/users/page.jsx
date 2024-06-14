@@ -52,7 +52,7 @@ function AllUsersPage() {
                 - Joined on: <span>{user.joined}</span>
               </p>
               <p>
-                - number of posts <span>{user.posts.length}</span>
+                - Number of posts: <span>{user.posts.length}</span>
               </p>
             </div>
           </div>
