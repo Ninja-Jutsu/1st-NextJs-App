@@ -15,7 +15,6 @@ function LikeBtn({ postId, userId, children }) {
   return (
     <UnstyledButton
       type='button'
-      className={`like-btn`}
       onClick={handleClick}
     >
       <Icon

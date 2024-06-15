@@ -1,8 +1,6 @@
-const mongoose = require('mongoose')
+import { Schema, model, models } from 'mongoose'
+
 const bcrypt = require('bcrypt')
-
-
-const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   username: {
@@ -58,5 +56,6 @@ UserSchema.virtual('url').get(function () {
   return `/users/${this._id}`
 })
 
-// Export model
-module.exports = mongoose.model('User', UserSchema)
+const UserModel = models.Post || model('User', UserSchema)
+
+export default UserModel

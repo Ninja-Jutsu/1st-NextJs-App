@@ -60,5 +60,3 @@ const UserModel = models.User || model('User', UserSchema)
 
 export default UserModel
 
-// Export model
-// module.exports = mongoose.model('User', UserSchema)

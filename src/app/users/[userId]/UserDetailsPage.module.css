@@ -12,6 +12,7 @@
   margin-bottom: 1rem;
   box-shadow: 2px 4px 8px hsl(0deg 0% 0% / 0.25);
 }
+
 .Header h2 {
   font-size: 3rem;
 }
@@ -68,13 +69,17 @@
   border-bottom: 1px solid var(--color-gray-700);
 }
 
+.PostWrapper h1 {
+  font-family: 'STIX Two Text', serif;
+}
+
 .PostWrapper main {
   display: flex;
   flex-direction: column;
   font-size: 2rem;
   padding: var(--padding);
-  margin-bottom: 1rem;
 }
+
 .PostDetails {
   display: flex;
   justify-content: center;
@@ -131,4 +136,21 @@
 .CommentDetails p {
   padding: var(--padding);
   margin-bottom: 0.5rem;
+}
+
+.PostContent {
+  display: grid;
+  grid-template-columns: 300px 3fr;
+  border-bottom: 1px solid var(--color-gray-500);
+  font-family: 'Texturina', serif;
+}
+.PostImageWrapper {
+  padding: 10px;
+  height: 300px;
+}
+.PostImageWrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

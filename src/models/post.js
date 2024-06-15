@@ -1,7 +1,5 @@
 import { Schema, model, models } from 'mongoose'
 
-// const Schema = mongoose.Schema
-
 const PostSchema = new Schema({
   title: { type: String, required: true, maxlength: 200, minlength: 3 },
   desc: { type: String, required: true, maxlength: 2500, minlength: 3 },

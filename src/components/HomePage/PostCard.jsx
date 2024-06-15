@@ -8,16 +8,16 @@ import CommentButton from '../../components/HomePage/CommentButton'
 import RandomImage from '../../../public/images/atmosphere-8752835.png'
 import classes from './PostCard.module.css'
 
-function PostCard({ post, user }) {
-  const { id, title, desc, date, comments, likes } = post
-  const { userId, username } = user // user must be an object
+function PostCard({ post }) {
+  const { id, title, desc, comments, likes, user } = post
+  const { _id, username } = user // user must be an object
   return (
     <div className={classes.cardContainer}>
       <div className={classes.cardHeader}>
         <div className={classes.userProfile}>
           <Link
             className={classes.userImageWrapper}
-            href={`/api/${userId}`}
+            href={`/users/${_id}`}
           >
             <Image
               src={RandomImage}
@@ -27,7 +27,7 @@ function PostCard({ post, user }) {
             />
           </Link>
           <Link
-            href={`users/${userId}`}
+            href={`users/${_id}`}
             className={classes.userName}
           >
             <p>{username}</p>
@@ -51,20 +51,20 @@ function PostCard({ post, user }) {
           <Image
             src={RandomImage}
             alt={`an image of the user called${username}`}
-            width={200}
-            height={200}
+            width={500}
+            height={500}
           />
         </div>
       </Link>
       <div className={classes.details}>
-        <div className='likes'> {likes.length} likes...</div>
-        <div className='comments'>{comments.length} comments...</div>
+        <div className='likes'> {likes.length} likes</div>
+        <div className={classes.CommentsCount}>{comments.length} comments</div>
       </div>
 
       <div className={classes.buttons}>
         <LikeBtn
           postId={id}
-          userId={userId}
+          userId={_id}
         />
         <CommentButton />
         <div className='spacer'></div>

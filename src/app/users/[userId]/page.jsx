@@ -1,7 +1,14 @@
 import React from 'react'
 import Image from 'next/image'
+
+// CSS
 import classes from './UserDetailsPage.module.css'
-import UnstyledButton from '../../../components/UnstyledButton/UnstyledButton'
+
+// Components
+import Comment from '../../../components/Posts/Comment'
+import ActionBtn from '../../../components/Posts/ActionsBtn'
+
+// Helpers
 import { formatDate } from '../../../helpers/format'
 import { DUMMY_USER } from '../../../helpers/DUMMY_USER'
 
@@ -9,6 +16,7 @@ function UserDetailsPage() {
   // fetch the specific user using his id
   // use his details to populate this page
   const { id, username, posts, profilePicture } = DUMMY_USER
+
   return (
     <div className={classes.Wrapper}>
       <header className={classes.Header}>
@@ -38,7 +46,17 @@ function UserDetailsPage() {
                   <h1>{title}</h1>
                 </header>
                 <main>
-                  <p>{desc}</p>
+                  <div className={classes.PostContent}>
+                    <div className={classes.PostImageWrapper}>
+                      <Image
+                        src={profilePicture}
+                        alt='Post Image'
+                        width={400}
+                        height={400}
+                      />
+                    </div>
+                    <p>{desc}</p>
+                  </div>
                   <div className={classes.PostDetails}>
                     <time>{formatDate(createdOn)}</time>
                     <p>{likes.length} likes</p>
@@ -46,23 +64,14 @@ function UserDetailsPage() {
                   </div>
                 </main>
               </div>
-              <div className={classes.Buttons}>
-                <UnstyledButton>Like</UnstyledButton>
-                <UnstyledButton>Add Comment</UnstyledButton>
-              </div>
+              <ActionBtn />
               <div>
                 {comments.map((comment) => {
                   return (
-                    <div
-                      key={id}
-                      className={classes.CommentWrapper}
-                    >
-                      <h3>{comment.text}</h3>
-                      <div className={classes.CommentDetails}>
-                        <p>{comment.createdOn}</p>
-                        <p>{comment.likes.length} likes</p>
-                      </div>
-                    </div>
+                    <Comment
+                      key={createdOn}
+                      comment={comment}
+                    />
                   )
                 })}
               </div>
