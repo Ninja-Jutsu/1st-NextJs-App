@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
 import { Schema, model, models } from 'mongoose'
-
 
 const CommentSchema = new Schema({
   text: { type: String, maxlength: 500, minlength: 1 },

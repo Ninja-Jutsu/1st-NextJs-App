@@ -4,11 +4,7 @@ import { formatDate } from '../helpers/format'
 import { getAllPosts } from '../_actions/postAction'
 
 export default async function HomePage() {
-  // Fetch all posts sorted by date
-
-  const data = await getAllPosts()
-  const allPosts = data.data
-  console.log(allPosts)
+  const { allPosts } = await getAllPosts()
   const formattedDate = formatDate('2024-12-25')
   return (
     <>

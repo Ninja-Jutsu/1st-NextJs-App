@@ -1,35 +1,21 @@
 import React from 'react'
-import classes from './Users.module.css'
-import randomImage from '../../../public/images/atmosphere-8752835.png'
 import Image from 'next/image'
-import { formatDate } from '../../helpers/format'
 import Link from 'next/link'
 
-const DUMMY_USERS = [
-  {
-    id: 1,
-    username: 'Ismail',
-    joined: '2023-06-03',
-    posts: [1, 2, 3],
-    profilePicture: randomImage,
-  },
-  {
-    id: 2,
-    username: 'Ismail',
-    joined: '2023-06-03',
-    posts: [1, 2, 3],
-    profilePicture: randomImage,
-  },
-]
+import classes from './Users.module.css'
 
-function AllUsersPage() {
+import { formatDate } from '../../helpers/format'
+import { getAllUsers, getPostsByUser } from '../../_actions/userAction'
+import randomImage from '../../../public/images/atmosphere-8752835.png'
+
+async function AllUsersPage() {
   // Fetch all users
-  DUMMY_USERS[0].joined = formatDate(DUMMY_USERS[0].joined)
-  DUMMY_USERS[1].joined = formatDate(DUMMY_USERS[1].joined)
+
+  const { allUsers } = await getAllUsers()
 
   return (
     <div className={classes.Wrapper}>
-      {DUMMY_USERS.map((user) => {
+      {allUsers.map((user) => {
         return (
           <div
             key={user.id}
@@ -48,11 +34,9 @@ function AllUsersPage() {
             </Link>
             <div className={classes.UserDetails}>
               <Link href={`users/${user.id}`}>- {user.username}</Link>
+
               <p>
-                - Joined on: <span>{user.joined}</span>
-              </p>
-              <p>
-                - Number of posts: <span>{user.posts.length}</span>
+                Number of posts: <span>{user.posts.length}</span>
               </p>
             </div>
           </div>

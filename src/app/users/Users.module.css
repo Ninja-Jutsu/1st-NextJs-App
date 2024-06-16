@@ -1,9 +1,8 @@
 .Wrapper {
-  display: grid;
-  --min-column-width: min(max-content, 33%);
-  grid-template-columns: repeat(auto-fill, minmax(450px, 600px));
-  place-content: center;
-  gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   margin-top: var(--margin-large);
 }
 
@@ -14,12 +13,12 @@
 .UserWrapper {
   display: flex;
   min-width: max-content;
-  width: 33%;
+  width: 50%;
   font-size: 1.5rem;
   gap: 10px;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--color-gray-500);
-  border: 1px solid black;
+  box-shadow: 2px 4px 8px var(--color-gray-500);
+  border-radius: 1rem;
   padding: 10px;
 }
 

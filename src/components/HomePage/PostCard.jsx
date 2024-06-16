@@ -4,37 +4,19 @@ import Link from 'next/link'
 
 import LikeBtn from './LikeBtn'
 import CommentButton from '../../components/HomePage/CommentButton'
+import UserInfo from '../Users/UserInfo'
 
 import RandomImage from '../../../public/images/atmosphere-8752835.png'
 import classes from './PostCard.module.css'
 
 function PostCard({ post }) {
-  const { id, title, desc, comments, likes, user } = post
-  const { _id, username } = user // user must be an object
+  const { _id, title, desc, comments, likes, user } = post
   return (
     <div className={classes.cardContainer}>
       <div className={classes.cardHeader}>
-        <div className={classes.userProfile}>
-          <Link
-            className={classes.userImageWrapper}
-            href={`/users/${_id}`}
-          >
-            <Image
-              src={RandomImage}
-              alt={`an image of the user called${username}`}
-              width={100}
-              height={100}
-            />
-          </Link>
-          <Link
-            href={`users/${_id}`}
-            className={classes.userName}
-          >
-            <p>{username}</p>
-          </Link>
-        </div>
+        <UserInfo user={user} />
         <Link
-          href={`/posts/${id}`}
+          href={`/${_id}`}
           className={classes.title}
         >
           <p>{title}</p>
@@ -42,7 +24,7 @@ function PostCard({ post }) {
       </div>
       <Link
         className={classes.postBody}
-        href={`/posts/${id}`}
+        href={`/${_id}`}
       >
         <div className={classes.textContent}>
           <p>{desc}</p>
@@ -50,7 +32,7 @@ function PostCard({ post }) {
         <div className={classes.mainImageWrapper}>
           <Image
             src={RandomImage}
-            alt={`an image of the user called${username}`}
+            alt={`an image of the user called${user.username}`}
             width={500}
             height={500}
           />
@@ -63,8 +45,8 @@ function PostCard({ post }) {
 
       <div className={classes.buttons}>
         <LikeBtn
-          postId={id}
-          userId={_id}
+          postId={_id}
+          userId={user._id}
         />
         <CommentButton />
         <div className='spacer'></div>

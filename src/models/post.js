@@ -16,9 +16,15 @@ PostSchema.virtual('url').get(function () {
 })
 
 // Virtual Date Formatter
-PostSchema.virtual('Date_formatted').get(function () {
-  const createdOn = this.createdOn ? DateTime.fromJSDate(this.createdOn).toLocaleString(DateTime.DATE_MED) : ''
-  return date
+// PostSchema.virtual('Date_formatted').get(function () {
+//   const createdOn = this.createdOn ? DateTime.fromJSDate(this.createdOn).toLocaleString(DateTime.DATE_MED) : ''
+//   return createdOn
+// })
+
+PostSchema.pre('save', async function (next) {
+  console.log('formatted')
+  this.createdOn ? DateTime.fromJSDate(this.createdOn).toLocaleString(DateTime.DATE_MED) : ''
+  next()
 })
 
 const PostModel = models.Post || model('Post', PostSchema)
