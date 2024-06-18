@@ -37,3 +37,5 @@ export async function getPostDetails(postId) {
     return { errMsg: err.message }
   }
 }
+
+export async function sharePost(prevState, formData) {}

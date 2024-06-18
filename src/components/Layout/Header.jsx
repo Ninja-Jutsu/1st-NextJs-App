@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import React from 'react'
 import Link from 'next/link'
 import classes from './Header.module.css'
@@ -6,8 +6,10 @@ import classes from './Header.module.css'
 import TopicsIcon from '../TopicsIcon/TopicsIcon'
 import ProfileIcon from '../ProfileIcon/ProfileIcon'
 
+
 // TODO: fetch topics and pass then here
 function Header({ topics }) {
+
   return (
     <div className={classes.Wrapper}>
       <TopicsIcon />

@@ -1,20 +1,34 @@
+'use client'
+
 import React from 'react'
-// import { Users } from 'react-feather'
-import styled from 'styled-components'
 import UnstyledButton from '../UnstyledButton/UnstyledButton'
 import Icon from '../Icon/Icon'
+import { useProfileOpenerContext } from '../../context-providers/ProfileOpenerProvider'
 
 function ProfileIcon() {
-  // HANDLE CLICK
-  function handleClick() {}
+  const { isOpen, setIsOpen } = useProfileOpenerContext()
+
+  function handleClick() {
+    setIsOpen(!isOpen)
+  }
 
   return (
     <UnstyledButton onClick={handleClick}>
-      <Icon
-        id={'users'}
-        size={24}
-        color={'black'}
-      />
+      {isOpen && (
+        <Icon
+          id={'close'}
+          color='black'
+          strokeWidth={3}
+          size={24}
+        />
+      )}
+      {!isOpen && (
+        <Icon
+          id={'users'}
+          size={24}
+          color={'black'}
+        />
+      )}
     </UnstyledButton>
   )
 }

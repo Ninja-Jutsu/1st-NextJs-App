@@ -199,17 +199,25 @@ body,
   height: 100%;
 }
 
-html {
+/* html {
   height: max-content;
-}
+  min-height: 100vh;
+} */
 
 body {
   position: relative;
   height: 100%;
 }
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.Content {
+  display: grid;
+  grid-template-columns: max-content 3fr max-content;
+  min-height: 100%;
 }
 
 /* FONTS */
