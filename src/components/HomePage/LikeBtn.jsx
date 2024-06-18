@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Icon from '../Icon/Icon'
-import UnstyledButton from '../UnstyledButton/UnstyledButton'
+import UnstyledButton from '../Buttons/UnstyledButton'
 
 function LikeBtn({ postId, userId, children }) {
   const [isLiked, setIsLiked] = React.useState(false)

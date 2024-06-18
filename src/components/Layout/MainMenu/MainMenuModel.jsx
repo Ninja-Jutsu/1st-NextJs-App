@@ -7,7 +7,7 @@ import { useMenuOpenContext } from '../../../context-providers/MenuOpenerProvide
 function MainMenuModel() {
   const { isOpen } = useMenuOpenContext()
   return (
-    <Wrapper isOpen={isOpen}>
+    <Wrapper isopen={isOpen}>
       <Link href='/posts'>All posts</Link>
       <Link href='/posts'>Latest posts</Link>
       <Link href='/posts'>Most liked posts</Link>
@@ -23,9 +23,11 @@ const Wrapper = styled.aside`
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding: ${(props) => (props.isOpen ? '1rem' : '0px')};
-  width: ${(props) => (props.isOpen ? '100%' : '0px')};
-  border-right: ${(props) => (props.isOpen ? 'solid black' : 'none')};
+  width: max-content;
+  max-width: 20%;
+  padding: ${(props) => (props.isopen ? '1rem' : '0px')};
+  width: ${(props) => (props.isopen ? '100%' : '0px')};
+  border-right: ${(props) => (props.isopen ? 'solid black' : 'none')};
   background-color: hsl(0, 0%, 90%);
   /* Hide Text Letters when the size of the container is 0px */
   overflow: hidden;

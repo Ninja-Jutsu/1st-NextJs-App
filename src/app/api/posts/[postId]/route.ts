@@ -14,3 +14,5 @@ export async function GET(req: NextRequest, { params: { postId } }: Params) {
   cookies().set('theme', 'dark')
   return NextResponse.json({ id: postId }, { status: 200 })
 }
+
+

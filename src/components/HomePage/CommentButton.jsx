@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Icon from '../Icon/Icon'
-import UnstyledButton from '../UnstyledButton/UnstyledButton'
+import UnstyledButton from '../Buttons/UnstyledButton'
 
 function CommentButton({ children }) {
   function handleClick() {

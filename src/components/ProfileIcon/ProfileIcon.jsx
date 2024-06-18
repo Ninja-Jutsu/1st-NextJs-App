@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import UnstyledButton from '../UnstyledButton/UnstyledButton'
+import UnstyledButton from '../Buttons/UnstyledButton'
 import Icon from '../Icon/Icon'
 import { useProfileOpenerContext } from '../../context-providers/ProfileOpenerProvider'
 

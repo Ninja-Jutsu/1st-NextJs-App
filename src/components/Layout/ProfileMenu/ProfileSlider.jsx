@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { useProfileOpenerContext } from '../../../context-providers/ProfileOpenerProvider'
 
-import UnstyledButton from '../../UnstyledButton/UnstyledButton'
+import UnstyledButton from '../../Buttons/UnstyledButton'
 
 function ProfileSlider() {
   const { isOpen } = useProfileOpenerContext()
@@ -23,7 +23,8 @@ const Wrapper = styled.aside`
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding: 1rem;
+  /* padding: 1rem; */
+  max-width: 10%;
   width: ${(props) => (props.isOpen ? '100%' : '0px')};
   transform: ${(props) => (props.isOpen ? 'translateX(0%)' : 'translateX(100%)')};
   border-left: ${(props) => (props.isOpen ? 'solid black' : 'none')};
