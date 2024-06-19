@@ -58,7 +58,7 @@ function LoginPage() {
             label='Your image'
             name='image'
           />
-          {state.message && <p>{state.message}</p>}
+          <ErrorWrapper>{state.message && <p>{state.message}</p>}</ErrorWrapper>
           <Actions>
             <SubmitBtn
               type='submit'
@@ -99,7 +99,7 @@ const FormHeader = styled.header`
 const Main = styled.main`
   width: 80%;
   margin: 3rem auto;
-  color: white;
+  color: ${`hsl(${COLORS.gray[900]})`};
 `
 const Form = styled.form`
   width: 100%;
@@ -125,7 +125,7 @@ const Form = styled.form`
     background: ${`hsl(${COLORS.gray[300]})`};
     font-size: 1.25rem;
     font-family: 'Montserrat', sans-serif;
-    color: #ddd6cb;
+    color: ${`hsl(${COLORS.gray[900]})`};
   }
   & input:focus,
   & textarea:focus {
@@ -142,7 +142,7 @@ const SubmitBtn = styled.button`
   border: 0;
   padding: 0.75rem 2rem;
   border: none;
-  color: black;
+  color: ${`hsl(${COLORS.gray[900]})`};
   border-radius: 2px;
   cursor: pointer;
   font: inherit;
@@ -159,8 +159,12 @@ const SubmitBtn = styled.button`
   &:hover:disabled,
   &:focus:disabled {
     background: #ccc;
-    color: #979797;
+    color: ${`hsl(${COLORS.gray[900]})`};
     cursor: not-allowed;
   }
+`
+
+const ErrorWrapper = styled.p`
+  color: ${`hsl(${COLORS.gray[900]})`};
 `
 export default LoginPage

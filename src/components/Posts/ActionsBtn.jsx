@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import UnstyledButton from '../../components/UnstyledButton/UnstyledButton'
+import UnstyledButton from '../../components/Buttons/UnstyledButton'
 import classes from './ActionBtn.module.css'
 
 function ActionsBtn() {

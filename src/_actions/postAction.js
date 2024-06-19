@@ -3,7 +3,9 @@ import PostModel from '../models/post'
 import UserModel from '../models/user' // must be imported to populate user
 import CommentModel from '../models/comment'
 import connectDb from '../config/database'
+
 import { body, validationResult } from 'express-validator'
+
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
@@ -44,31 +46,40 @@ export async function getPostDetails(postId) {
 export async function sharePost(prevState, formData) {
   await connectDb()
 
-  const post = {
-    title: formData.get('title'),
-    desc: formData.get('desc'),
-    image: formData.get('image'),
-    // for this to work we must make sure that we pass the correct name to our ImagePicker Compo
-    // the image should be stored in the file system, while the src should be stored in the db
-    user: formData.get('user'),
+  //Mock a req:
+  let req = {
+    body: {
+      title: formData.get('title'),
+      desc: formData.get('desc'),
+      image: formData.get('image'),
+      // for this to work we must make sure that we pass the correct name to our ImagePicker Compo
+      // the image should be stored in the file system, while the src should be stored in the db
+      user: formData.get('user'),
+    },
   }
-  let errors
-  body('title')
-    .trim()
-    .isLength({ min: 3, max: 200 })
-    .withMessage('Title content must between 3 & 200 charts.')
-    .escape(),
-    body('desc').trim().isLength({ min: 3, max: 2500 }).withMessage('Post content must between 3 & 2500 charts.')
 
-  errors = validationResult(post)
+  const validationRules = [
+    body('title')
+      .trim()
+      .isLength({ min: 3, max: 200 })
+      .withMessage('Title content must between 3 & 200 charts.')
+      .escape(),
+    body('desc').trim().isLength({ min: 3, max: 2500 }).withMessage('Post content must between 3 & 2500 charts.'),
+  ]
+
+  await Promise.all(validationRules.map((validation) => validation.run(req)))
+
+  const errors = validationResult(req)
+
   const validatedPost = new PostModel({
-    title: post.title.replace(/&#x27;/g, "'"),
-    desc: post.desc.replace(/&#x27;/g, "'"),
-    user: post.user,
+    title: req.body.title.replace(/&#x27;/g, "'"),
+    desc: req.body.desc.replace(/&#x27;/g, "'"),
+    user: req.body.user,
   })
 
-  if (errors.array().length > 0) {
-    return { message: 'SOMETHING WRONG' }
+  if (!errors.isEmpty()) {
+    console.log(errors.errors)
+    return { message: errors.errors[0].msg }
   }
   await validatedPost.save()
 
