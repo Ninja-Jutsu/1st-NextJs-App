@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import IconUnstyledBtn from '../UnstyledButton/IconUnstyledBtn'
+import IconUnstyledBtn from '../Buttons/IconUnstyledBtn'
 
 function ExtraBtns() {
   function handleShare() {}

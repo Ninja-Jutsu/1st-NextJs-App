@@ -13,7 +13,6 @@ import { HighlightSpan } from '../../../components/StyledElements/StyledElements
 function LoginPage() {
   const [state, formAction] = useFormState(sharePost, { message: null })
   const { pending } = useFormStatus()
-  console.log(state)
   return (
     <Wrapper>
       <FormHeader>
@@ -165,6 +164,7 @@ const SubmitBtn = styled.button`
 `
 
 const ErrorWrapper = styled.p`
-  color: ${`hsl(${COLORS.gray[900]})`};
+  color: hsl(0, 60%, 50%);
+  font-weight: ${WEIGHTS.bold};
 `
 export default LoginPage

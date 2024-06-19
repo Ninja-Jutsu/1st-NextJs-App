@@ -16,7 +16,7 @@ function PostCard({ post }) {
       <div className={classes.cardHeader}>
         <UserInfo user={user} />
         <Link
-          href={`/${_id}`}
+          href={`/posts/${_id}`}
           className={classes.title}
         >
           <p>{title}</p>
@@ -24,7 +24,7 @@ function PostCard({ post }) {
       </div>
       <Link
         className={classes.postBody}
-        href={`/${_id}`}
+        href={`/posts/${_id}`}
       >
         <div className={classes.textContent}>
           <p>{desc}</p>

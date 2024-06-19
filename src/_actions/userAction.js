@@ -6,7 +6,7 @@ import connectDb from '../config/database'
 
 export async function getAllUsers() {
   try {
-    const client = await connectDb()
+    await connectDb()
     const data = await UserModel.find()
 
     if (!data) {
@@ -20,7 +20,7 @@ export async function getAllUsers() {
 
 export async function getPostsByUser({ userId }) {
   try {
-    const client = await connectDb()
+    await connectDb()
     const data = await PostModel.find({ user: userId })
 
     if (!data) {
@@ -30,4 +30,16 @@ export async function getPostsByUser({ userId }) {
   } catch (err) {
     return { errMsg: err.message }
   }
+}
+
+export async function getUserDetails({ userId }) {
+  // console.log((req.params.id))
+  const [user, allPostsByUser] = await Promise.all([
+    UserModel.findById(userId).populate('posts').exec(),
+    PostModel.find({ user: userId }, 'title desc').exec(),
+  ])
+  if (!user) {
+    return { message: 'User not found!' }
+  }
+  return { user: JSON.parse(JSON.stringify({ user, posts: allPostsByUser })) }
 }

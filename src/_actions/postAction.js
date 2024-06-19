@@ -47,7 +47,7 @@ export async function sharePost(prevState, formData) {
   await connectDb()
 
   //Mock a req:
-  let req = {
+  const req = {
     body: {
       title: formData.get('title'),
       desc: formData.get('desc'),

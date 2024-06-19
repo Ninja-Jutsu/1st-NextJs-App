@@ -3,13 +3,13 @@ import Image from 'next/image'
 
 import classes from './PageDetails.module.css'
 
-import Ad from '../../components/Ad/Ad'
-import randomImage from '../../../public/images/atmosphere-8752835.png'
-import ExtraBtns from '../../components/Posts/ExtraBtns'
-import ActionsBtn from '../../components/Posts/ActionsBtn'
-import UserInfo from '../../components/Users/UserInfo'
-import Comment from '../../components/Posts/Comment'
-import { getPostDetails } from '../../_actions/postAction'
+import Ad from '../../../components/Ad/Ad'
+import randomImage from '../../../../public/images/atmosphere-8752835.png'
+import ExtraBtns from '../../../components/Posts/ExtraBtns'
+import ActionsBtn from '../../../components/Posts/ActionsBtn'
+import UserInfo from '../../../components/Users/UserInfo'
+import Comment from '../../../components/Posts/Comment'
+import { getPostDetails } from '../../../_actions/postAction'
 
 async function PostDetailPage({ params }) {
   // fetch data for the provided postId

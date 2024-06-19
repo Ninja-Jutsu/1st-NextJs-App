@@ -1,6 +1,6 @@
 import { Schema, model, models } from 'mongoose'
 
-const bcrypt = require('bcrypt')
+import bcrypt from 'bcrypt'
 
 const UserSchema = new Schema({
   username: {
@@ -59,4 +59,3 @@ UserSchema.virtual('url').get(function () {
 const UserModel = models.User || model('User', UserSchema)
 
 export default UserModel
-
