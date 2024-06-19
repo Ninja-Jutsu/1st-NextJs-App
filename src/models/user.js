@@ -46,9 +46,9 @@ UserSchema.statics.login = async function (email, password) {
     if (auth) {
       return user
     }
-    return 'incorrect password'
+    return 'Incorrect password'
   }
-  return 'incorrect email'
+  return 'Incorrect email'
 }
 
 // Virtual for book's URL

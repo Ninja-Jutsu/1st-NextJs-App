@@ -46,25 +46,32 @@ export async function isLoggedIn(jwtToken) {
 }
 
 export async function login(prevState, formData) {
-  await connectDb()
-
   const email = formData.get('email')
   const password = formData.get('password')
 
-  const user = await UserModel.login(email, password)
-  if (typeof user !== 'string') {
-    const token = createToken(user._id)
-    cookies().set('jwt', token)
-    return { message: 'Cookies Set!' }
-  } else {
+  let user
+
+  try {
+    await connectDb()
+    user = await UserModel.login(email, password)
+  } catch (err) {
+    console.log(err)
+  }
+
+  if (typeof user === 'string') {
     return { message: user }
   }
+  const token = createToken(user._id)
+  cookies().set('jwt', token)
+  revalidatePath('/', 'layout')
+  redirect('/')
+  // return { message: 'Logged in successfully Notification' }
 }
 
 export async function logout() {
   cookies().set('jwt', '', { maxAge: 1 })
-
-  return { message: 'Logged-out successfully' }
+  revalidatePath('/', 'layout')
+  redirect('/')
 }
 
 export async function signup(prevState, formData) {
