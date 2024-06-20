@@ -86,3 +86,14 @@ export async function sharePost(prevState, formData) {
   revalidatePath('/posts', 'page')
   redirect('/posts')
 }
+
+export async function getAllPostForUser(userId) {
+  try {
+    await connectDb()
+    const posts = await PostModel.find({ user: userId }).populate('comments').exec()
+
+    return { posts: JSON.parse(JSON.stringify(posts)) }
+  } catch (err) {
+    return { message: 'Something went wrong' }
+  }
+}

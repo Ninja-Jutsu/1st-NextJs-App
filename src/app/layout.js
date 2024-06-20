@@ -1,8 +1,9 @@
 import './globals.css'
 import Header from '../components/Layout/Header'
-import { MenuOpenerProvider } from '../context-providers/MenuOpenerProvider'
-import { ProfileOpenerProvider } from '../context-providers/ProfileOpenerProvider'
-import { UserLoggedInProvider } from '../context-providers/UserLoggedInProvider'
+import MenuOpenerProvider from '../context-providers/MenuOpenerProvider'
+import ProfileOpenerProvider from '../context-providers/ProfileOpenerProvider'
+import UserLoggedInProvider from '../context-providers/UserLoggedInProvider'
+import CurrentUserProvider from '../context-providers/CurrentUserProvider'
 
 import { cookies } from 'next/headers'
 
@@ -20,16 +21,18 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body>
         <UserLoggedInProvider>
-          <MenuOpenerProvider>
-            <ProfileOpenerProvider>
-              <Header />
-              <main className='Content'>
-                <MainMenuModel />
-                {children}
-                <ProfileSlider session={session} />
-              </main>
-            </ProfileOpenerProvider>
-          </MenuOpenerProvider>
+          <CurrentUserProvider>
+            <MenuOpenerProvider>
+              <ProfileOpenerProvider>
+                <Header />
+                <main className='Content'>
+                  <MainMenuModel />
+                  {children}
+                  <ProfileSlider session={session} />
+                </main>
+              </ProfileOpenerProvider>
+            </MenuOpenerProvider>
+          </CurrentUserProvider>
         </UserLoggedInProvider>
       </body>
     </html>

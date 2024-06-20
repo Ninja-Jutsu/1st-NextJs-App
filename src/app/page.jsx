@@ -2,7 +2,7 @@ import React from 'react'
 
 import classes from './HomePage.module.css'
 
-function HomePage() {
+async function HomePage() {
   return <main className={classes.Wrapper}>HOME PAGE</main>
 }
 

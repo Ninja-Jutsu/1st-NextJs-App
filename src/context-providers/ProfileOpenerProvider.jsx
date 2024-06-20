@@ -3,7 +3,7 @@ import React from 'react'
 
 const ProfileOpenerContext = React.createContext()
 
-export function ProfileOpenerProvider({ children }) {
+export default function ProfileOpenerProvider({ children }) {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return <ProfileOpenerContext.Provider value={{ isOpen, setIsOpen }}>{children}</ProfileOpenerContext.Provider>

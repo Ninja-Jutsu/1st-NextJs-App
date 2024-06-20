@@ -3,7 +3,7 @@ import React from 'react'
 
 const UserLoggedInContext = React.createContext()
 
-export function UserLoggedInProvider({ children }) {
+export default function UserLoggedInProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
   return <UserLoggedInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>{children}</UserLoggedInContext.Provider>

@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 
 // CSS
@@ -7,22 +6,29 @@ import classes from './UserDetailsPage.module.css'
 // Components
 import Comment from '../../../components/Posts/Comment'
 import ActionBtn from '../../../components/Posts/ActionsBtn'
+import ProfilePic from '../../../../public/images/atmosphere-8752835.png'
 
 // Helpers
 import { formatDate } from '../../../helpers/format'
-import { DUMMY_USER } from '../../../helpers/DUMMY_USER'
 
-function UserDetailsPage() {
-  // fetch the specific user using his id
-  // use his details to populate this page
-  const { id, username, posts, profilePicture } = DUMMY_USER
+// Actions:
+import { isLoggedIn } from '../../../_actions/authAction'
+import { getAllPostForUser } from '../../../_actions/postAction'
 
+async function UserDetailsPage() {
+  const { user, isLogged } = await isLoggedIn()
+  const { posts } = await getAllPostForUser(user._id)
+
+  // console.log(posts)
+  // console.log(user)
+
+  const { _id, username } = user
   return (
     <div className={classes.Wrapper}>
       <header className={classes.Header}>
         <div className={classes.ImageWrapper}>
           <Image
-            src={profilePicture}
+            src={ProfilePic}
             alt='user profile image'
             width={400}
             height={400}
@@ -49,7 +55,7 @@ function UserDetailsPage() {
                   <div className={classes.PostContent}>
                     <div className={classes.PostImageWrapper}>
                       <Image
-                        src={profilePicture}
+                        src={ProfilePic}
                         alt='Post Image'
                         width={400}
                         height={400}

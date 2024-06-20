@@ -3,7 +3,7 @@ import React from 'react'
 
 const MenuOpenerContext = React.createContext()
 
-export function MenuOpenerProvider({ children }) {
+export default function MenuOpenerProvider({ children }) {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return <MenuOpenerContext.Provider value={{ isOpen, setIsOpen }}>{children}</MenuOpenerContext.Provider>

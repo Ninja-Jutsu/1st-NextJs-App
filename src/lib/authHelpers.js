@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import UserModel from '../models/user'
 import connectDb from '../config/database'
-import { cookies } from 'next/headers'
 
 export const maxAge = 3 * 24 * 60 * 60
 export const createToken = (id) => {
@@ -16,7 +15,7 @@ export const verifyToken = async (tokenValue) => {
     }
     await connectDb()
     let user = await UserModel.findById(decodedToken.id)
-    return { isLogged: true, user }
+    return { isLogged: true, user: JSON.parse(JSON.stringify(user)) }
   })
 
   return await result

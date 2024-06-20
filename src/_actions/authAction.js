@@ -13,28 +13,6 @@ import { revalidatePath } from 'next/cache'
 
 import { verifyToken } from '../lib/authHelpers'
 
-export async function getCurrentUser(jwtToken) {
-  const token = jwtToken
-  await connectDb()
-  if (token !== null) {
-    jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
-      if (err) {
-        return { message: 'not verified' }
-      } else {
-        UserModel.findById(decodedToken.id)
-          .then((user) => {
-            return { user: JSON.parse(JSON.stringify(user)) }
-          })
-          .catch((err) => {
-            return { message: 'Something went wrong!' }
-          })
-      }
-    })
-  } else {
-    return { message: 'Token not found' }
-  }
-}
-
 export async function isLoggedIn() {
   const token = cookies().get('jwt')
   if (!token) {

@@ -1,14 +1,12 @@
 import AuthForm from '../../../components/Auth/AuthForm'
-import { checkUser } from '../../../lib/authHelpers'
 
 import { isLoggedIn } from '../../../_actions/authAction'
 import { redirect } from 'next/navigation'
 
 async function AuthPage() {
   const { user, isLogged } = await isLoggedIn()
-
   if (isLogged) {
-    redirect('/')
+    redirect(`/users/${user._id}`)
   }
   return (
     <>

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { useProfileOpenerContext } from '../../../context-providers/ProfileOpenerProvider'
 import { useUserLoggedInContext } from '../../../context-providers/UserLoggedInProvider'
+import { useCurrentUserContext } from '../../../context-providers/CurrentUserProvider'
 
 import { logout } from '../../../_actions/authAction'
 import UnstyledButton from '../../Buttons/UnstyledButton'
@@ -12,7 +13,8 @@ import UnstyledButton from '../../Buttons/UnstyledButton'
 function ProfileSlider({ session }) {
   const { isOpen, setIsOpen } = useProfileOpenerContext()
   const { isLoggedIn, setIsLoggedIn } = useUserLoggedInContext()
-
+  const { userId } = useCurrentUserContext()
+  
   React.useEffect(() => {
     if (session) {
       setIsLoggedIn(true)
@@ -20,9 +22,9 @@ function ProfileSlider({ session }) {
   }, [session])
 
   async function handleLogout() {
-    await logout()
     setIsLoggedIn(false)
     setIsOpen(false)
+    await logout()
   }
   // console.log(session) // {name: jwt, value: 'jwt value'}
 
@@ -44,7 +46,7 @@ function ProfileSlider({ session }) {
             setIsOpen(false)
           }}
         >
-          <Link href='/users/userId'>Profile</Link>
+          <Link href={`/users/${userId}`}>Profile</Link>
         </UnstyledButton>
       )}
       {isLoggedIn && <UnstyledButton onClick={handleLogout}>Logout</UnstyledButton>}
