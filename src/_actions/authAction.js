@@ -11,6 +11,8 @@ import { body, validationResult } from 'express-validator'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
+import { verifyToken } from '../lib/authHelpers'
+
 export async function getCurrentUser(jwtToken) {
   const token = jwtToken
   await connectDb()
@@ -19,13 +21,11 @@ export async function getCurrentUser(jwtToken) {
       if (err) {
         return { message: 'not verified' }
       } else {
-        console.log('verified')
         UserModel.findById(decodedToken.id)
           .then((user) => {
             return { user: JSON.parse(JSON.stringify(user)) }
           })
           .catch((err) => {
-            console.log(err)
             return { message: 'Something went wrong!' }
           })
       }
@@ -35,14 +35,13 @@ export async function getCurrentUser(jwtToken) {
   }
 }
 
-export async function isLoggedIn(jwtToken) {
-  await connectDb()
-
+export async function isLoggedIn() {
   const token = cookies().get('jwt')
-  console.log(token)
-  if (token !== null) {
-    return false
+  if (!token) {
+    return { isLogged: false, user: null }
   }
+  const result = await verifyToken(token.value)
+  return result
 }
 
 export async function login(prevState, formData) {
@@ -114,7 +113,6 @@ export async function signup(prevState, formData) {
     return { message: errors.errors[0].msg }
   }
   if (emailUsed !== null) {
-    console.log('email already used')
     return { message: 'Email Already Registered' }
   }
   await user.save()

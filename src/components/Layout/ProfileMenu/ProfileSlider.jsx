@@ -24,7 +24,7 @@ function ProfileSlider({ session }) {
     setIsLoggedIn(false)
     setIsOpen(false)
   }
-  console.log(session) // {name: jwt, value: 'jwt value'}
+  // console.log(session) // {name: jwt, value: 'jwt value'}
 
   return (
     <Wrapper open={isOpen}>

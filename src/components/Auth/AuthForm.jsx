@@ -1,85 +1,83 @@
 'use client'
-import { useState, useRef } from 'react'
-import { redirect } from 'next/navigation'
+
+import React from 'react'
+import { useFormState } from 'react-dom'
+import { useFormStatus } from 'react-dom'
+
+import { signup } from '../../_actions/authAction'
+import { login } from '../../_actions/authAction'
 
 function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true)
-  const userNameInput = useRef()
-  const emailInput = useRef()
-  const passwordInput = useRef()
+  const [isLogin, setIsLogin] = React.useState(true)
+  const [signUpState, signUpFormAction] = useFormState(signup, { message: null })
+  const [loginState, loginFormAction] = useFormState(login, { message: null })
 
-  async function submitHandler(e) {
-    e.preventDefault()
-    const enteredUserName = userNameInput.current.value
-    const enteredEmail = emailInput.current.value
-    const enteredPassword = passwordInput.current.value
-
-    // we can add validation here if we want (skipped)
-    if (isLogin) {
-      // signIn method will automatically look for api/auth/[...nextauth]
-      // 1st arg: defined the same provider we sat in the api route
-      // signIn will always resolve , result will contain info about err if any
-      // we pass redirect false to prevent NextAuth from redirecting us somewhere else which is the default behavior
-      // result will either have a error prop with a string or null
-      const result = await signIn('credentials', {
-        redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
-      })
-      if (!result.error) {
-        redirect('/')
-      }
-      console.log(result)
-    } else {
-      try {
-        const result = await createUser(enteredEmail, enteredPassword)
-        console.log(result)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
+  const { pending } = useFormStatus()
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState)
   }
 
   return (
-    <section className={classes.auth}>
+    <form action={isLogin ? loginFormAction : signUpFormAction}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <form onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor='email'>Your Email</label>
+      {!isLogin && (
+        <p>
+          <label htmlFor='username'>Username</label>
           <input
-            name='email'
-            type='email'
-            id='email'
+            id='username'
+            name='username'
+            type='text'
             required
-            ref={emailInput}
           />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor='password'>Your Password</label>
-          <input
-            name='password'
-            type='password'
-            id='password'
-            required
-            ref={passwordInput}
-          />
-        </div>
-        <div className={classes.actions}>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
+        </p>
+      )}
+      <p>
+        <label htmlFor='email'>Email</label>
+        <input
+          id='email'
+          name='email'
+          type='email'
+          required
+        />
+      </p>
+      <p>
+        <label htmlFor='password'>Password</label>
+        <input
+          type='text'
+          id='password'
+          name='password'
+        />
+      </p>
+      <div className='Actions'>
+        <button
+          type='button'
+          onClick={switchAuthModeHandler}
+        >
+          {isLogin ? 'Create new account' : 'Login with existing account'}
+        </button>
+        {isLogin && (
           <button
-            type='button'
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
+            type='submit'
+            disabled={pending}
           >
-            {isLogin ? 'Create new account' : 'Login with existing account'}
+            {pending ? 'Login...' : 'Login'}
           </button>
-        </div>
-      </form>
-    </section>
+        )}
+        {!isLogin && (
+          <button
+            type='submit'
+            disabled={pending}
+          >
+            {pending ? 'Creating Account...' : 'Create Account'}
+          </button>
+        )}
+      </div>
+      <div className='Feedback'>
+        {!isLogin && <p>{signUpState.message && <p>{signUpState.message}</p>}</p>}
+        {isLogin && <p>{loginState.message && <p>{loginState.message}</p>}</p>}
+      </div>
+    </form>
   )
 }
 
